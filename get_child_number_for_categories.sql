@@ -2,10 +2,10 @@
 -- для категорий номенклатуры.
 
 SELECT 
-  categories.id,
-  categories.name AS category_name, 
-  COUNT(categories.id) AS child_count
-  FROM categories
-  LEFT JOIN categories ON categories.parent_id = categories.id
-  GROUP BY categories.id, categories.name
-  ORDER BY categories.id;
+  c.id,
+  c.name AS category_name, 
+  COUNT(sub.id) AS child_count
+  FROM categories c
+  LEFT JOIN categories sub ON sub.parent_id = c.id
+  GROUP BY c.id, c.name
+  ORDER BY c.id;
